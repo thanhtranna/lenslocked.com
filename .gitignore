@@ -56,9 +56,22 @@ builds/**/images/*
 
 # Anything under a tmp folder
 **/tmp/*
+**/exp/*
 
 # Don't include our binary
 lenslocked.com
 images/**
 
 .config
+notes/**
+.vscode/**
+*.swp
+.gometalinter
+
+#Don't include our binary
+lenslocked.com
+images/**
+
+#production-files
+Caddyfile
+config.go

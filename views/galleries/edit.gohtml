@@ -1,0 +1,108 @@
+{{define "yield"}}
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <h2>Edit your gallery</h3>
+    <a href="/galleries/{{.ID}}">View this Gallery</a>
+    <hr>
+  </div>
+  <div class="col-md-12">
+    {{template "editGalleryForm" .}}
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-1">
+    <label class="control-label pull-right">
+      Images
+    </label>
+  </div>
+  <div class="row">
+    {{template "galleryImages" .}}
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    {{template "uploadImageForm" .}}
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <h3>Dangerous buttons...</h3>
+    <hr>
+  </div>
+  <div class="col-md-12">
+    {{template "deleteGalleryForm" .}}
+  </div>
+</div>
+{{end}}
+
+{{define "editGalleryForm"}}
+<form action="/galleries/{{.ID}}/update" method="POST"
+  class="form-horizontal">
+  {{csrfField}}
+  <div class="form-group">
+    <label for="title" class="col-md-1 control-label">Title</label>
+    <div class="col-md-5">
+      <input type="text" name="title" class="form-control" id="title"
+        placeholder="What is the title of your gallery?" value="{{.Title}}">
+    </div>
+    <div class="col-md-1">
+      <button type="submit" class="btn btn-default mt-1">Save</button>
+    </div>
+  </div>
+</form>
+{{end}}
+
+{{define "deleteGalleryForm"}}
+<form action="/galleries/{{.ID}}/delete" method="POST"
+  class="form-horizontal">
+  {{csrfField}}
+  <div class="form-group">
+    <div class="col-md-10 col-md-offset-1">
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </div>
+  </div>
+</form>
+{{end}}
+
+{{define "uploadImageForm"}}
+<form action="/galleries/{{.ID}}/images" method="POST"
+  enctype="multipart/form-data" class="form-horizontal">
+  {{csrfField}}
+    <div class="form-group">
+      <label for="images" class="col-md-2 control-label">Add Images</label>
+      <div class="col-md-10">
+       <div class="custom-upload">
+         
+            <input type="file" multiple="multiple" id="images" name="images">
+       </div>
+       
+        
+        <p class="help-block">Please only use jpg, jpeg, and png.</p>
+        <button type="submit" class="btn btn-default">Upload</button>
+    </div>
+  </div>
+</form>
+{{end}}
+
+{{define "galleryImages"}}
+ {{range .ImagesSplitN 6}}
+    <div class="col-lg-2">
+      {{range .}}
+      <div class="edit-gallery" style="height: 16rem; margin-bottom:1rem;">
+        <a href="{{.Path}}">
+          <img src="{{.Path}}" style="max-width: 13rem; max-height: 13rem; padding-bottom:.75rem;">
+        </a>
+        {{template "deleteImageForm" .}}
+      </div>
+      {{end}}
+    </div>
+  {{end}}
+
+{{end}}
+
+{{define "deleteImageForm"}}
+<form action="/galleries/{{.GalleryID}}/images/{{.Filename | urlquery}}/delete" method="POST">
+{{csrfField}}
+   <button type="submit" class="btn btn-sm del-btn">Delete</button>
+</form>
+{{end}}

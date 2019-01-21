@@ -1,3 +1,3 @@
-# lenslocked.com
+# Lens Locked
 
-lenslocked.com
+An awesome photo gallery application written in GO!
