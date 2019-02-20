@@ -15,32 +15,32 @@ document.getElementById('dark').addEventListener("click", darkmode);
 
 //functions
 function lightmode() {
-  document.cookie = "theme=lighttheme;path=/";
-  document.getElementById('pagestyle').setAttribute('href', lighttheme);
+	document.cookie = "theme=lighttheme;path=/";
+	document.getElementById('pagestyle').setAttribute('href', lighttheme);
 
 
-  // document.getElementById('main-nav').setAttribute('class', document.getElementById('main-nav').getAttribute('class')+' nav_light navbar-light bg-light');
-  $('#main-nav').removeClass("navbar-special bg-primary navbar-dark");
-  $('#main-nav').addClass("navbar-light bg-white");
+	// document.getElementById('main-nav').setAttribute('class', document.getElementById('main-nav').getAttribute('class')+' nav_light navbar-light bg-light');
+	$('#main-nav').removeClass("navbar-special bg-primary navbar-dark");
+	$('#main-nav').addClass("navbar-light bg-white");
 
-  var url = window.location;
-  $('ul.navbar-nav a').filter(function () {
-    return this.href == url;
-  }).removeClass('text-success').addClass('text-primary');
+	var url = window.location;
+	$('ul.navbar-nav a').filter(function () {
+		return this.href == url;
+	}).removeClass('text-success').addClass('text-primary');
 
-  console.log(mode);
+	console.log(mode);
 }
 
 function darkmode() {
-  mode = document.cookie = "theme=darktheme;path=/";
-  document.getElementById('pagestyle').setAttribute('href', darktheme);
-  $('#main-nav').removeClass("bg-white");
-  $('#main-nav').addClass("navbar-special bg-primary");
+	mode = document.cookie = "theme=darktheme;path=/";
+	document.getElementById('pagestyle').setAttribute('href', darktheme);
+	$('#main-nav').removeClass("bg-white");
+	$('#main-nav').addClass("navbar-special bg-primary");
 
-  var url = window.location;
-  $('ul.navbar-nav a').filter(function () {
-    return this.href == url;
-  }).removeClass('text-primary').addClass('text-success');
-  console.log(mode);
+	var url = window.location;
+	$('ul.navbar-nav a').filter(function () {
+		return this.href == url;
+	}).removeClass('text-primary').addClass('text-success');
+	console.log(mode);
 }
 

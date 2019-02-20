@@ -67,6 +67,7 @@ func (u *Users) Create(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/galleries", http.StatusFound)
 }
 
+// LoginForm is define type Login
 type LoginForm struct {
 	Email    string `schema:"email"`
 	Password string `schema:"password"`
