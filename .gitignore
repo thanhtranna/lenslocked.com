@@ -74,4 +74,3 @@ images/**
 
 #production-files
 Caddyfile
-config.go
